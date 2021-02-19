@@ -23,13 +23,14 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     && source /usr/local/share/nvm/nvm.sh \
     && nvm install 12.1 \
-    && pip install wheel \
-    && pip install homeassistant
+    && pip install wheel
 
 EXPOSE 8123
 
 VOLUME /config
 
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 COPY container /usr/bin
 
 CMD container
