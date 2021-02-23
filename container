@@ -108,11 +108,19 @@ function setup() {
     install_lovelace_plugins
 }
 
+function get_dev() {
+    pip install --upgrade git+git://github.com/home-assistant/core.git@dev
+}
+
 function run() {
     hass -c /config -v
 }
 
 case $1 in
+    setup-dev)
+        get_dev
+        setup
+        ;;
     setup)
         setup
         ;;

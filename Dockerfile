@@ -33,4 +33,6 @@ COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 COPY container /usr/bin
 
+USER vscode
+
 CMD container
