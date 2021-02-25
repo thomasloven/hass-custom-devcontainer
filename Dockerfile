@@ -35,4 +35,4 @@ COPY container /usr/bin
 
 USER vscode
 
-CMD container
+CMD sudo -E container
