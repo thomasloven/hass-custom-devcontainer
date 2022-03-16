@@ -76,7 +76,7 @@ EOF
         fi
 
         i=$((i+1))
-        
+
         head -c -1 >> /config/.storage/lovelace_resources << EOF
             {
                 "id": "${i}",
@@ -109,12 +109,16 @@ function setup() {
 }
 
 function get_dev() {
-    pip install --upgrade git+git://github.com/home-assistant/core.git@dev
+    pip install --upgrade git+https://github.com/home-assistant/core.git@dev
 }
 
 function run() {
     hass -c /config -v
 }
+
+if [[ -f "$ENV_FILE" ]]; then
+    source "$ENV_FILE"
+fi
 
 case $1 in
     setup-dev)
@@ -125,6 +129,11 @@ case $1 in
         setup
         ;;
     launch)
+        run
+        ;;
+    run-dev)
+        get_dev
+        setup
         run
         ;;
     *)
