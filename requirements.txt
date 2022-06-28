@@ -1,5 +1,5 @@
 homeassistant==2022.6.7
 stdlib-list==0.8.0
 tqdm==4.64.0
-black==22.3.0
+black==22.6.0
 flake8==4.0.1
