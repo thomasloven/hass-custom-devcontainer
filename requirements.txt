@@ -1,4 +1,4 @@
-homeassistant==2022.7.3
+homeassistant==2022.7.4
 stdlib-list==0.8.0
 tqdm==4.64.0
 black==22.6.0
