@@ -109,7 +109,9 @@ function setup() {
 }
 
 function get_dev() {
-    pip install --upgrade git+https://github.com/home-assistant/core.git@dev
+    rm -rf /usr/src/homeassistant
+    git clone --branch dev --single-branch --depth 1 https://github.com/home-assistant/core.git /usr/src/homeassistant
+    pip install --upgrade -e /usr/src/homeassistant
 }
 
 function run() {
