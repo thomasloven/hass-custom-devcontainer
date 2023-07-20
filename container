@@ -97,7 +97,7 @@ EOF
 }
 
 function install_hacs() {
-    curl -sfSL https://hacs.xyz/install | bash -
+    curl -sfSL https://get.hacs.xyz | bash -
 }
 
 function setup() {
