@@ -30,6 +30,11 @@ EOF
 }
 
 function fetch_lovelace_plugins() {
+    if [[ -z "$LOVELACE_PLUGINS" ]]; then
+        echo "No Lovelace plugins or local files specified. Skipping setup."
+        return
+    fi
+
     mkdir -p /config/www/workspace
     for plugin in $LOVELACE_PLUGINS
     do
@@ -54,6 +59,11 @@ function fetch_lovelace_plugins() {
 }
 
 function install_lovelace_plugins() {
+
+    if [[ -z "$LOVELACE_LOCAL_FILES" ]]; then
+        echo "No Lovelace plugins or local files specified. Skipping setup."
+        return
+    fi
 
     for file in $LOVELACE_LOCAL_FILES
     do
@@ -109,11 +119,16 @@ function setup() {
 }
 
 function get_dev() {
-    rm -rf /usr/src/homeassistant
-    git clone --branch dev --single-branch --depth 1 https://github.com/home-assistant/core.git /usr/src/homeassistant
-    pip install --upgrade -e /usr/src/homeassistant
-}
+    # Extract version from requirements.txt
+    VERSION=$(grep "homeassistant==" requirements.txt | cut -d'=' -f3)
 
+    rm -rf /usr/src/homeassistant
+    git clone https://github.com/home-assistant/core.git ~/src/homeassistant
+    cd ~/src/homeassistant
+    git checkout $VERSION
+    cd -
+    pip install --upgrade -e ~/src/homeassistant
+}
 function run() {
     hass -c /config -v
 }
