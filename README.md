@@ -30,6 +30,7 @@ The default action of the image is to run `container`, which will
 | `HASS_PASSWORD` | The password of the default user | `dev` |
 | `LOVELACE_PLUGINS` | List of lovelac plugins to download from github | Empty |
 | `LOVELACE_LOCAL_FILES` | List of filenames in `/config/www/workspace` to add as lovelace resources | Emtpy |
+| `LOVELACE_REMOTE_FILES` | List of full URLs to remotely served lovelace resources to add to lovelace configuration | Empty |
 
 ### About Lovelace Plugins
 The dowload and install of plugins is *very* basic. This is not HACS.
@@ -37,6 +38,8 @@ The dowload and install of plugins is *very* basic. This is not HACS.
 `LOVELACE_PLUGINS` should be a space separated list of author/repo pairs, e.g. `"thomasloven/lovelace-card-mod  kalkih/mini-media-player"`
 
 `LOVELACE_LOCAL_FILES` is for the currently worked on plugins and should be a list of file names which are mounted in `/config/www/workspace`.
+
+`LOVELACE_REMOTE_FILES` is for plugins served remotely (e.g. by a local dev server) and should be a space separated list of full URLs including host and port, e.g. `"http://localhost:5000/my-card.js http://localhost:5001/other-card.js"`. The URLs are used as-is in the lovelace resources configuration.
 
 ### Container Script
 

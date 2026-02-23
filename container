@@ -60,6 +60,11 @@ function install_lovelace_plugins() {
         plugins="${plugins} /local/workspace/${file}"
     done
 
+    for file in $LOVELACE_REMOTE_FILES
+    do
+        plugins="${plugins} ${file}"
+    done
+
     fetch_lovelace_plugins
 
     cat > /config/.storage/lovelace_resources << EOF
